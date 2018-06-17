@@ -20,23 +20,24 @@
     
     Set-Up – playSound(e)
     0. Again, takes an event as a parameter.
-    1. 
+    1. Set a constant called audio to 
 */
 function removeTransition(e) {
     if (e.propertyName !== 'transform') return;
     e.target.classList.remove('playing');
-  }
+}
 
-  function playSound(e) {
+function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    console.log(audio);
     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
     if (!audio) return;
 
     key.classList.add('playing');
     audio.currentTime = 0;
     audio.play();
-  }
+}
 
-  const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-  window.addEventListener('keydown', playSound);
+const keys = Array.from(document.querySelectorAll('.key'));
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+window.addEventListener('keydown', playSound);
